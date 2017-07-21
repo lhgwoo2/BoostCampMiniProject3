@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/googleMap"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/map_preButton"
+        android:layout_alignParentTop="true">
+
+    </fragment>
+
+    <TextView
+        android:id="@+id/address_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/googleMap"
+        android:background="#66000000"
+        android:textColor="#fff"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        />
+
+    <Button
+        android:id="@+id/map_preButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_background"
+        android:text="이전" />
+
+
+</RelativeLayout>
