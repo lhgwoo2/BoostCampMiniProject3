@@ -133,7 +133,7 @@ public class EnrollFragment extends Fragment {
                 bundle.putDouble("longitude", longitude);
 
                 RestorantVO vo = dataSetRestorantVO();
-                myRef.setValue(vo);
+                myRef.child(vo.getName()).setValue(vo);
 
                 ((FragmentReplaceable)getActivity()).replaceFragment(2, bundle);
             }
@@ -146,6 +146,7 @@ public class EnrollFragment extends Fragment {
         vo.setComment(editTextComments.getText().toString());
         vo.setLatitude(latitude);
         vo.setLongitude(longitude);
+        vo.setTel(editTextRestorantTel.getText().toString());
         vo.setName(editTextRestorantName.getText().toString());
 
         return vo;

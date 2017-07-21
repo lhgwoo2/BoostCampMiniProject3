@@ -30,8 +30,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by 현기 on 2017-07-19.
@@ -190,7 +193,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Log.e("data", dataSnapshot.toString());
                 Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
 
-                for(Map.Entry<String, Object> entry : map.entrySet()){
+                if(!map.isEmpty()){
+                    Set keys = map.keySet();
+                    Iterator<String> it = keys.iterator();
+                    while(it.hasNext()){
+                        String key = it.next();
+                        Log.i("키값",map.get(key).toString());
+                        HashMap keyMap = (HashMap) map.get(key);
+
+
+                        LatLng latLng = new LatLng((double)keyMap.get("latitude"), (double)keyMap.get("longitude"));
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(latLng)
+                                .snippet((String)keyMap.get("tel")+"\n"+(String)keyMap.get("comment"))
+                                .title((String)keyMap.get("name"))).setDraggable(true);
+                    }
+                }
+                /*for(Map.Entry<String, Object> entry : map.entrySet()){
 
                     Map data = (Map)entry.getValue();
                     LatLng latLng = new LatLng(Double.parseDouble((String) data.get("latitude")),Double.parseDouble((String) data.get("longitude")));
@@ -199,7 +218,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                             .snippet((String)data.get("tel")+"\n"+(String)data.get("comment"))
                             .title(titleRestorant)).setDraggable(true);
 
-                }
+                }*/
             }
 
             @Override
